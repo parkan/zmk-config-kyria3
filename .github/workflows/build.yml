@@ -6,13 +6,13 @@ jobs:
   build:
     runs-on: ubuntu-latest
     container:
-      image: zmkfirmware/zmk-build-arm:latest
+      image: zmkfirmware/zmk-build-arm:stable
     name: Build
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
       - name: Cache west modules
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         env:
           cache-name: cache-zephyr-modules
         with:
@@ -52,7 +52,7 @@ jobs:
       - name: Rename zmk.uf2
         run: cp build/zephyr/zmk.uf2 corne_right_nice_nano_v2.uf2
       - name: Archive (Corne Right)
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: firmware
           path: corne_right_nice_nano_v2.uf2
